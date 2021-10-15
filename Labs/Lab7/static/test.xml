@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <students>
+    <student>
+      <firstName>Kirill</firstName>
+      <lastName>Kravchenko</lastName>
+      <age>19</age>
+    </student>
+    <student>
+      <firstName>Nikita</firstName>
+      <lastName>Kravchenko</lastName>
+      <age>19</age>
+    </student>
+  </students>
+</root>

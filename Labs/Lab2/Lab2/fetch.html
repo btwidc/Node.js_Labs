@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fetch</title>
+</head>
+<body>
+</body>
+<script>
+  fetch('http://localhost:5000/api/name')
+    .then(response => response.text())
+    .then(content => document.querySelector("body").innerText = content);
+</script>
+</html>

@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>XMLHttpRequest</title>
+</head>
+<body>
+</body>
+<script>
+    const req = new XMLHttpRequest();
+    req.open("GET", 'http://localhost:5000/api/name', true);
+    req.onreadystatechange = () => {
+        let body = document.querySelector('body');
+        if (req.readyState === 4) {
+            if (req.status === 200) {
+                body.innerText = req.responseText;
+            }
+        }
+    }
+    req.send();
+</script>
+</html>
