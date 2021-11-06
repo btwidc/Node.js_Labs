@@ -1,6 +1,7 @@
 function start() {
   loadJSON();
   loadXML();
+  //testPost();
 }
 
 function loadJSON() {
@@ -20,3 +21,11 @@ function loadXML() {
       result.innerText = response;
     });
 }
+
+/*
+function testPost() {
+  fetch('http://localhost:5000/test.png', {
+    method: 'POST'
+  });
+}
+*/
