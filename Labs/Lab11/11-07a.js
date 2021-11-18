@@ -1,16 +1,13 @@
-const rpcWSC = require('rpc-websockets').Client;
-const readline = require('readlxine');
+const rpcWSC = require("rpc-websockets").Client;
 
-let ws = new rpcWSC('ws://localhost:4000/');
+let ws = new rpcWSC("ws://localhost:4000/");
 
-let read = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
+console.log("Enter notify A, B or C");
 
-ws.on('open', () => {
-    console.log('Enter notify A, B or C');
-    read.on('line', function(line) {
-        ws.notify(line);
-    });
+process.stdin.setEncoding("utf-8");
+process.stdin.on("readable", () => {
+  let chunk = null;
+  while ((chunk = process.stdin.read(1)) != null) {
+    ws.notify(chunk);
+  }
 });
