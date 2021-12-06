@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lab15</title>
+</head>
+<body>
+
+<h3>Pulpits:</h3>
+
+<ul class="pulpits">
+    <% for(var i = 0; i < pulpits.length; i++) {%>
+        <li class="pulpit">
+            <span><%= pulpits[i].pulpit %></span>:
+            <span><%= pulpits[i].pulpit_name %></span>
+            (<span><%= pulpits[i].pulpit_faculty %></span>)
+        </li>
+    <% } %>
+</ul>
+
+</body>
+</html>

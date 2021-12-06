@@ -44,7 +44,7 @@ function fib(n) {
     // Получаем i-й элемент последовательности как сумму предыдущих двух
     fibonacci[i] = fibonacci[i - 1] + fibonacci[i - 2];
   }
-
+  if (n == 1) return 0;
   return fibonacci;
 }
 
@@ -60,7 +60,7 @@ server
   .protected();
 
 function factorial(n) {
-  return n !== 1 ? n * factorial(n - 1) : 1;
+  return n == 0 ? 1 : n * factorial(n - 1);
 }
 
 server

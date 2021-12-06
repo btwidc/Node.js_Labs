@@ -1,7 +1,7 @@
 const net = require('net');
 
 let HOST = '0.0.0.0';
-let PORT = 6000;
+let PORT = 2000;
 
 let sum = 0;
 

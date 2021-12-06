@@ -1,20 +1,18 @@
 const net = require('net');
 
 let HOST = '127.0.0.1';
-let PORT = 4000;
-
-let parm = process.argv[2];
-let message = typeof parm == 'undefined' ? 'Message for Server' : parm;
+let PORT = 2000;
 
 let client = new net.Socket();
+
 client.connect(PORT, HOST, () => {
     console.log(`Client connected: ${client.remoteAddress}:${client.remotePort}`);
 });
 
-client.write(message);
+client.write('Hello from Client');
 
 client.on('data', data => {
-    console.log(`Client data: ${data.toString()}`);
+    console.log(`Received message from server: ${data.toString()}`);
     client.destroy();
 });
 

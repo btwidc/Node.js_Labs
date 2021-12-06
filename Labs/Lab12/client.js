@@ -1,6 +1,9 @@
-const websocket = require('ws');
-const ws = new websocket('ws://localhost:4000/broadcast');
+const rpcWSC = require("rpc-websockets").Client;
+const client = new rpcWSC("ws://localhost:4000");
 
-ws.on('message', (message) => {
-    console.log('Полученное сообщение -> ', message);
+client.on("open", () => {
+  client
+    .subscribe("change")
+    .then(() => console.log("Подписались на изменение"));
+  client.on("change", () => console.log("Файл был изменён!"));
 });

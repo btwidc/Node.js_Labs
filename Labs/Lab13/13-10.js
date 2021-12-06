@@ -1,17 +1,16 @@
 const udp = require('dgram');
-const PORT = 4000;
+const PORT = 2000;
 
 let client = udp.createSocket('udp4');
 
-client.on('message', (msg, info) => {
-    MsgBuff = msg.toString();
-    console.log(`Server ${info.address}:${info.port} = ${MsgBuff}`);
+client.on('message', (msg) => {
+    console.log(`Received message from server: ${msg.toString()}`);
 }).on('error', (err) => {
         console.log('Error: ' + err);
         client.close();
     });
 
-client.send('Hi', PORT, 'localhost', (err) => {
+client.send('Hello from Client', PORT, 'localhost', (err) => {
     if (err) client.close();
-    else console.log('Sended');
+    else console.log('Message sent');
 });

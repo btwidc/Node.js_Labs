@@ -1,10 +1,9 @@
 create database KKV;
-
 use KKV;
 
 create table FACULTY
-(    FACULTY      char(10) primary key,
-     FACULTY_NAME  varchar(50) default '???'
+(    FACULTY      nvarchar(10) primary key,
+     FACULTY_NAME  nvarchar(50) default '???'
 );
 
 insert into FACULTY   (FACULTY,   FACULTY_NAME )
@@ -16,11 +15,14 @@ insert into FACULTY   (FACULTY,   FACULTY_NAME )
 			('ТОВ',		'Технология органических веществ'),
             ('ИТ',		'Факультет информационных технологий'); 
 
+select * from FACULTY;
+
+------------------------------------------------------------------------------
 
 create table  PULPIT 
-(   PULPIT		 char(20)  constraint PULPIT_PK  primary key,
-    PULPIT_NAME  varchar(100), 
-    FACULTY		 char(10)   constraint PULPIT_FACULTY_FK foreign key references FACULTY(FACULTY) 
+(   PULPIT		 nvarchar(20)  constraint PULPIT_PK  primary key,
+    PULPIT_NAME  nvarchar(100), 
+    FACULTY		 nvarchar(10)   constraint PULPIT_FACULTY_FK foreign key references FACULTY(FACULTY) 
 );
 
 insert into PULPIT   (PULPIT, PULPIT_NAME, FACULTY )
@@ -47,41 +49,15 @@ insert into PULPIT   (PULPIT, PULPIT_NAME, FACULTY )
 			('МиЭП',   'Менеджмента и экономики природопользования','ИЭФ'),   
 			('СБУАиА', 'Статистики, бухгалтерского учета, анализа и аудита', 'ИЭФ')     
 
-create table TEACHER
-(   
-	TEACHER    char(10)  constraint TEACHER_PK  primary key,
-	TEACHER_NAME  varchar(100), 
-	GENDER     char(1) CHECK (GENDER in ('м', 'ж')),
-	PULPIT   char(20) constraint TEACHER_PULPIT_FK foreign key references PULPIT(PULPIT) 
-);
+select * from PULPIT;
 
-insert into  TEACHER    (TEACHER,   TEACHER_NAME, GENDER, PULPIT )
-	values	('СМЛВ',    'Смелов Владимир Владиславович', 'м',  'ИСиТ'),
-			('АКНВЧ',    'Акунович Станислав Иванович', 'м', 'ИСиТ'),
-			('КЛСНВ',    'Колесников Виталий Леонидович', 'м', 'ИСиТ'),
-			('БРКВЧ',    'Бракович Андрей Игоревич', 'м', 'ИСиТ'),
-			('ДТК',     'Дятко Александр Аркадьевич', 'м', 'ИСиТ'),
-			('УРБ',     'Урбанович Павел Павлович', 'м', 'ИСиТ'),
-			('ГРН',     'Гурин Николай Иванович', 'м', 'ИСиТ'),
-			('ЖЛК',     'Жиляк Надежда Александровна',  'ж', 'ИСиТ'),
-			('МРЗ',     'Мороз Елена Станиславовна',  'ж',   'ИСиТ'),
-			('БРТШВЧ',   'Барташевич Святослав Александрович', 'м','ПОиСОИ'),
-			('АРС',     'Арсентьев Виталий Арсентьевич', 'м', 'ПОиСОИ'),
-			('БРНВСК',   'Барановский Станислав Иванович', 'м', 'ЭТиМ'),
-			('НВРВ',   'Неверов Александр Васильевич', 'м', 'МиЭП'),
-			('РВКЧ',   'Ровкач Андрей Иванович', 'м', 'ЛВ'),
-			('ДМДК', 'Демидко Марина Николаевна',  'ж',  'ЛПиСПС'),
-			('БРГ',     'Бурганская Татьяна Минаевна', 'ж', 'ЛПиСПС'),
-			('РЖК',   'Рожков Леонид Николаевич ', 'м', 'ЛВ'),
-			('ЗВГЦВ',   'Звягинцев Вячеслав Борисович', 'м', 'ЛЗиДВ'),
-			('БЗБРДВ',   'Безбородов Владимир Степанович', 'м', 'ОХ'),
-			('НСКВЦ',   'Насковец Михаил Трофимович', 'м', 'ТЛ'); 
+----------------------------------------------------------------------------------------
 
 create table SUBJECT
 (    
-	SUBJECT  char(10) constraint SUBJECT_PK  primary key, 
-	SUBJECT_NAME varchar(100) unique,
-	PULPIT  char(20) constraint SUBJECT_PULPIT_FK foreign key references PULPIT(PULPIT)   
+	SUBJECT  nvarchar(10) constraint SUBJECT_PK  primary key, 
+	SUBJECT_NAME nvarchar(100) unique,
+	PULPIT  nvarchar(20) constraint SUBJECT_PULPIT_FK foreign key references PULPIT(PULPIT)   
 );
 
  insert into SUBJECT   (SUBJECT,   SUBJECT_NAME, PULPIT )
@@ -111,24 +87,32 @@ create table SUBJECT
 			('ТРИ',    'Технология резиновых изделий','ЛЗиДВ'),
 			('ВТЛ',    'Водный транспорт леса','ТЛ'),
 			('ТиОЛ',   'Технология и оборудование лесозаготовок', 'ЛЗиДВ')
+			
+select * from SUBJECT;
 
-create table AUDITORIUM_TYPE
+----------------------------------------------------------------------------------------
+
+create table AUDITORIUMS_TYPE
 (
-    AUDITORIUM_TYPE  char(10) constraint AUDITORIUM_TYPE_PK  primary key,
-    AUDITORIUM_TYPENAME  varchar(30)
+    AUDITORIUM_TYPE  nvarchar(10) constraint AUDITORIUM_TYPE_PK  primary key,
+    AUDITORIUM_TYPENAME  nvarchar(30)
  )
-insert into AUDITORIUM_TYPE   (AUDITORIUM_TYPE,  AUDITORIUM_TYPENAME )        values ('ЛК',            'Лекционная');
-insert into AUDITORIUM_TYPE   (AUDITORIUM_TYPE,  AUDITORIUM_TYPENAME )         values ('ЛБ-К',          'Компьютерный класс');
-insert into AUDITORIUM_TYPE   (AUDITORIUM_TYPE, AUDITORIUM_TYPENAME )         values ('ЛК-К',          'Лекционная с уст. проектором');
-insert into AUDITORIUM_TYPE   (AUDITORIUM_TYPE,  AUDITORIUM_TYPENAME )          values  ('ЛБ-X',          'Химическая лаборатория');
-insert into AUDITORIUM_TYPE   (AUDITORIUM_TYPE, AUDITORIUM_TYPENAME )        values  ('ЛБ-СК',   'Спец. компьютерный класс');
+insert into AUDITORIUMS_TYPE   (AUDITORIUM_TYPE,  AUDITORIUM_TYPENAME )        values ('ЛК',            'Лекционная');
+insert into AUDITORIUMS_TYPE   (AUDITORIUM_TYPE,  AUDITORIUM_TYPENAME )         values ('ЛБ-К',          'Компьютерный класс');
+insert into AUDITORIUMS_TYPE   (AUDITORIUM_TYPE, AUDITORIUM_TYPENAME )         values ('ЛК-К',          'Лекционная с уст. проектором');
+insert into AUDITORIUMS_TYPE   (AUDITORIUM_TYPE,  AUDITORIUM_TYPENAME )          values  ('ЛБ-X',          'Химическая лаборатория');
+insert into AUDITORIUMS_TYPE   (AUDITORIUM_TYPE, AUDITORIUM_TYPENAME )        values  ('ЛБ-СК',   'Спец. компьютерный класс');
+
+select * from AUDITORIUMS_TYPE;
+
+-------------------------------------------------------------------------------------
 
 create table AUDITORIUM
-(   AUDITORIUM   char(20)  constraint AUDITORIUM_PK  primary key,
-    AUDITORIUM_TYPE     char(10) constraint  AUDITORIUM_AUDITORIUM_TYPE_FK foreign key
-                      references AUDITORIUM_TYPE(AUDITORIUM_TYPE),
+(   AUDITORIUM   nvarchar(20)  constraint AUDITORIUM_PK  primary key,
+    AUDITORIUM_TYPE     nvarchar(10) constraint  AUDITORIUM_AUDITORIUM_TYPE_FK foreign key
+                      references AUDITORIUMS_TYPE(AUDITORIUM_TYPE),
    AUDITORIUM_CAPACITY  integer constraint  AUDITORIUM_CAPACITY_CHECK default 1  check (AUDITORIUM_CAPACITY between 1 and 300),  -- вместимость
-   AUDITORIUM_NAME      varchar(50)
+   AUDITORIUM_NAME      nvarchar(50)
 );
 
 insert into  AUDITORIUM   (AUDITORIUM, AUDITORIUM_NAME, AUDITORIUM_TYPE, AUDITORIUM_CAPACITY) values  ('206-1', '206-1',   'ЛБ-К', 15);
@@ -139,3 +123,13 @@ insert into  AUDITORIUM   (AUDITORIUM, AUDITORIUM_NAME, AUDITORIUM_TYPE, AUDITOR
 insert into  AUDITORIUM   (AUDITORIUM, AUDITORIUM_NAME, AUDITORIUM_TYPE, AUDITORIUM_CAPACITY) values  ('413-1',   '413-1', 'ЛБ-К', 15);
 insert into  AUDITORIUM   (AUDITORIUM, AUDITORIUM_NAME, AUDITORIUM_TYPE, AUDITORIUM_CAPACITY) values  ('423-1',   '423-1', 'ЛБ-К', 90);
 insert into  AUDITORIUM   (AUDITORIUM, AUDITORIUM_NAME, AUDITORIUM_TYPE, AUDITORIUM_CAPACITY) values  ('408-2',   '408-2', 'ЛК',  90);
+
+select * from AUDITORIUM;
+
+--------------------------------------
+
+DROP table AUDITORIUM;
+DROP table AUDITORIUMS_TYPE;
+DROP table SUBJECT;
+DROP table PULPIT;
+DROP table FACULTY;

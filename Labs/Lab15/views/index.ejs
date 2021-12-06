@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lab15</title>
+</head>
+<body>
+<h1>CRUD app with Node, Express, and MongoDB</h1>
+
+<hr/>
+<div class="postData" style="display: flex; width: 100%; flex: 1 1 0; justify-content: flex-start">
+
+    <div class="postFaculty" style="width: 35%;">
+        <h3>Add Faculty:</h3>
+        <form action="/api/faculties" method="POST">
+            <input type="text" placeholder="Faculty" name="faculty">
+            <input type="text" placeholder="Faculty name" name="faculty_name">
+            <button type="submit">POST</button>
+        </form>
+    </div>
+
+    <div class="postPulpit" style="width: 35%;">
+        <h3>Add Pulpit:</h3>
+        <form action="/api/pulpits" method="POST" >
+            <input type="text" placeholder="Pulpit" name="pulpit">
+            <input type="text" placeholder="Pulpit name" name="pulpit_name">
+            <input type="text" placeholder="Pulpit faculty" name="pulpit_faculty">
+        <button type="submit">POST</button>
+        </form>
+    </div>
+
+</div>
+<br/>
+<hr/>
+
+<div class="getData" style="display: flex; width: 100%; flex: 1 1 0; justify-content: flex-start">
+
+    <div class="getFaculties" style="width: 15%;">
+        <h3>Get Faculties:</h3>
+        <form action="/api/faculties" method="GET">
+            <button type="submit">GET</button>
+        </form>
+    </div>
+
+    <div class="getPulpits" style="width: 15%;">
+        <h3>Get Pulpits:</h3>
+        <form action="/api/pulpits" method="GET">
+            <button type="submit">GET</button>
+        </form>
+    </div>
+
+</div>
+<br/>
+<hr/>
+
+<div class="updateData" style="display: flex; width: 100%; flex: 1 1 0; justify-content: flex-start">
+
+    <div class="updateFaculty" style="width: 40%;">
+        <h3>Update Faculty:</h3>
+        <input type="text" placeholder="Faculty" name="upd_faculty" id="upd_faculty">
+        <input type="text" placeholder="New faculty" name="new_faculty" id="new_faculty">
+        <input type="text" placeholder="New faculty name" name="new_faculty_name" id="new_faculty_name">
+        <button onclick="updFaculty()" type="submit">PUT</button>
+    </div>
+
+    <div class="updatePulpit" style="width: 60%;">
+        <h3>Update Pulpit:</h3>
+        <input type="text" placeholder="Pulpit" name="upd_pulpit" id="upd_pulpit">
+        <input type="text" placeholder="New pulpit" name="new_pulpit" id="new_pulpit">
+        <input type="text" placeholder="New pulpit name" name="new_pulpit_name" id="new_pulpit_name">
+        <input type="text" placeholder="New pulpit faculty" name="new_pulpit_faculty" id="new_pulpit_faculty">
+        <button onclick="updPulpit()" type="submit">PUT</button>
+    </div>
+
+</div>
+<br/>
+<hr/>
+
+<div class="deleteData" style="display: flex; width: 100%; flex: 1 1 0; justify-content: flex-start">
+
+    <div class="deleteFaculty" style="width: 25%;">
+        <h3>Delete Faculty:</h3>
+            <input type="text" placeholder="Faculty" name="del_faculty" id="del_faculty">
+            <button onclick="delFaculty()" type="submit">DELETE</button>
+    </div>
+
+    <div class="deletePulpit" style="width: 25%;">
+        <h3>Delete Pulpit:</h3>
+            <input type="text" placeholder="Pulpit" name="del_pulpit" id="del_pulpit">
+            <button onclick="delPulpit()" type="submit">DELETE</button>
+    </div>
+
+</div>
+<br/>
+<hr/>
+
+<script>
+    function delFaculty() {
+        const faculty = document.querySelector("#del_faculty").value;
+        fetch(`http://localhost:3000/api/faculties/${faculty}`, {
+            method: "DELETE",
+        })
+            .then((response) => response.text())
+            .catch((err) => console.log(err));
+        document.querySelector("#del_faculty").value = '';
+    }
+
+    function delPulpit() {
+        const pulpit = document.querySelector("#del_pulpit").value;
+        fetch(`http://localhost:3000/api/pulpits/${pulpit}`, {
+            method: "DELETE",
+        })
+            .then((response) => response.text())
+            .catch((err) => console.log(err));
+        document.querySelector("#del_pulpit").value = '';
+    }
+
+    function updFaculty() {
+        const faculty = document.querySelector("#upd_faculty").value;
+        const newFaculty = document.querySelector("#new_faculty").value;
+        const newFacultyName = document.querySelector("#new_faculty_name").value;
+        fetch(`http://localhost:3000/api/faculties`, {
+            method: 'put',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                faculty: faculty,
+                newFaculty: newFaculty,
+                newFacultyName: newFacultyName,
+            })
+        })
+            .then((response) => response.text())
+            .catch((err) => console.log(err));
+        document.querySelector("#upd_faculty").value = '';
+        document.querySelector("#new_faculty").value = '';
+        document.querySelector("#new_faculty_name").value = '';
+    }
+
+    function updPulpit() {
+        const pulpit = document.querySelector("#upd_pulpit").value;
+        const newPulpit = document.querySelector("#new_pulpit").value;
+        const newPulpitName = document.querySelector("#new_pulpit_name").value;
+        const newFaculty = document.querySelector("#new_pulpit_faculty").value;
+        fetch(`http://localhost:3000/api/pulpits`, {
+            method: 'put',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                pulpit: pulpit,
+                newPulpit: newPulpit,
+                newPulpitName: newPulpitName,
+                newFaculty: newFaculty,
+            })
+        })
+            .then((response) => response.text())
+            .catch((err) => console.log(err));
+        document.querySelector("#upd_pulpit").value = '';
+        document.querySelector("#new_pulpit").value = '';
+        document.querySelector("#new_faculty_name").value = '';
+        document.querySelector("#new_pulpit_faculty").value = '';
+    }
+
+</script>
+
+</body>
+</html>

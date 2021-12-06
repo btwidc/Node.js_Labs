@@ -23,7 +23,7 @@ ws.on("open", () => {
   ws.login({ login: "admin", password: "admin" }).then((login) => {
     ws.call("fib", [1])
       .catch((e) => {
-        console.log("catch fact: ", e);
+        console.log("catch fib: ", e);
       })
       .then((r) => {
         console.log("fib = ", r);

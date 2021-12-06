@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lab15</title>
+</head>
+<body>
+
+<h3>Faculties:</h3>
+
+<ul class="faculties">
+    <% for(var i = 0; i < faculties.length; i++) {%>
+        <li class="faculty">
+            <span><%= faculties[i].faculty %></span>:
+            <span><%= faculties[i].faculty_name %></span>
+        </li>
+    <% } %>
+</ul>
+
+</body>
+</html>

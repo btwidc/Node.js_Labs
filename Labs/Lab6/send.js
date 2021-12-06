@@ -10,7 +10,7 @@ const transport = nodemailer.createTransport({
   },
   auth: {
     user: "krauchankakiryl@gmail.com",
-    pass: "krav4enkokirill20028032",
+    pass: "password",
   },
 });
 
