@@ -7,20 +7,17 @@
 <body>
 <div class="wrapper">
     <div class="getData">
-        GET:
-        <br />
-        <br />
+        <h2>GET:</h2>
         <button onclick="get()">GET</button>
     </div>
     <div class="postData">
         <br />
-        POST:
-        <br />
-        <br />
+        <h2>POST:</h2>
         <label>
             PULPIT:
             <input type="text" name="pulpit" id="pulpit" required />
         </label>
+        <br />
         <br />
         <label>
             PULPIT NAME:
@@ -32,6 +29,7 @@
             />
         </label>
         <br />
+        <br />
         <label>
             FACULTY:
             <input type="text" name="faculty" id="faculty" required />
@@ -41,9 +39,7 @@
     </div>
     <div class="update-data">
         <br />
-        UPDATE:
-        <br />
-        <br />
+        <h2>UPDATE:</h2>
         <label>
             PULPIT:
             <input
@@ -52,9 +48,32 @@
                     id="pulpit_update"
                     required
             />
+            <br />
+            <br />
+        </label>
+        <label>
+            NEW PULPIT:
+            <input
+                    type="text"
+                    name="new_pulpit_update"
+                    id="new_pulpit_update"
+                    required
+            />
         </label>
         <br />
-            FACULTY:
+        <br />
+        <label>
+            NEW PULPIT NAME:
+            <input
+                    type="text"
+                    name="new_pulpit_name_update"
+                    id="new_pulpit_name_update"
+                    required
+            />
+            <br />
+        </label>
+        <br />
+            NEW FACULTY:
             <input
                     type="text"
                     name="value_name"
@@ -68,10 +87,7 @@
     </div>
     <br />
     <div class="deleteData">
-        <br />
-        DELETE:
-        <br />
-        <br />
+        <h2>DELETE:</h2>
         <label>
             PULPIT: <input type="text" name="pulpit" id="pulpit_del" required />
         </label>
@@ -82,10 +98,11 @@
         <form>
             <button onclick="clear()">CLEAR</button>
         </form>
-    </div>
+        <br/>
     <div class="result"></div>
+        <div class="error"></div>
 </div>
-<script>
+    <script>
      const clear = () => {
         console.log("clear");
         document.querySelector(".result").innerHTML = "";
@@ -125,30 +142,39 @@
                 ["FACULTY"]: faculty,
             }),
         })
-            .then((response) => response.json())
+            .then((response) => response.text())
             .then((data) => {
-                document.querySelector(".result").innerHTML = JSON.stringify(data);
+                document.querySelector(".result").innerHTML = data;
             })
             .catch((err) => console.log(err));
+        document.querySelector(".result").innerHTML = "";
     }
 
     const put = () => {
         const pulpit = document.querySelector("#pulpit_update").value;
-        const faculty = document.querySelector("#faculty_value").value;
-        fetch(`http://localhost:3000/api/pulpits/${pulpit}`, {
+        const newPulpit = document.querySelector("#new_pulpit_update").value;
+        const newPulpitName = document.querySelector("#new_pulpit_name_update").value;
+        const newfaculty = document.querySelector("#faculty_value").value;
+        fetch(`http://localhost:3000/api/pulpits`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                ["FACULTY"]: faculty,
+                ["PULPIT"]: pulpit,
+                ["NEW_PULPIT"]: newPulpit,
+                ["NEW_PULPIT_NAME"]: newPulpitName,
+                ["NEW_FACULTY"]: newfaculty,
+
             }),
         })
-            .then((response) => response.json())
+            .then((response) => response.text())
             .then((data) => {
-                document.querySelector(".result").innerHTML = JSON.stringify(data);
+                document.querySelector(".result").innerHTML = data;
             })
-            .catch((err) => console.log(err));
+            .catch((err) => {
+                document.querySelector(".error").innerHTML = 'No such pulpit';
+            })
     }
 
     function del() {
@@ -160,9 +186,10 @@
             .then((data) => {
                 document.querySelector(".result").innerHTML = data;
             })
-            .catch((err) => console.log(err));
+            .catch((err) => {
+                document.querySelector(".error").innerHTML = 'No such pulpit';
+            })
     }
-
 </script>
 </body>
 </html>

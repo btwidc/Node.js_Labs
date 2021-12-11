@@ -7,7 +7,7 @@ const getFaculties = async (req, res) => {
         const faculties = await eventData.getFaculties();
         res.json(faculties);
     } catch (error) {
-        res.status(400).send(error.message);
+        Error_400(res, error);
     }
 }
 
@@ -16,7 +16,7 @@ const getPulpits = async (req, res) => {
         const pulpits = await eventData.getPulpits();
         res.json(pulpits);
     } catch (error) {
-        res.status(400).send(error.message);
+        Error_400(res, error);
     }
 }
 
@@ -25,7 +25,7 @@ const getSubjects = async (req, res) => {
         const subjects = await eventData.getSubjects();
         res.json(subjects);
     } catch (error) {
-        res.status(400).send(error.message);
+        Error_400(res, error);
     }
 }
 
@@ -34,7 +34,7 @@ const getAuditoriumsTypes = async (req, res) => {
         const auditoriumTypes = await eventData.getAuditoriumsTypes();
         res.json(auditoriumTypes);
     } catch (error) {
-        res.status(400).send(error.message);
+        Error_400(res, error);
     }
 }
 
@@ -43,30 +43,34 @@ const getAuditoriums = async (req, res) => {
         const auditoriums = await eventData.getAuditoriums();
         res.json(auditoriums);
     } catch (error) {
-        res.status(400).send(error.message);
+        Error_400(res, error);
     }
 }
 
 const postFaculty = async (req, res) => {
-    try {
         const data = req.body;
         console.log(data);
-        const newFaculty = await eventData.postFaculty(data);
-        res.json(newFaculty);
-    } catch (error) {
-        res.status(400).send(error.message);
-    }
+        await eventData.postFaculty(data)
+            .then(newFaculty => {
+                console.log(newFaculty);
+                res.end('Faculty inserted!' + '\n' + JSON.stringify(newFaculty));
+            })
+            .catch(error => {
+                Error_400(res, error);
+            })
 }
 
 const postPulpit = async (req, res) => {
-    try {
         const data = req.body;
         console.log(data);
-        const newPulpit = await eventData.postPulpit(data);
-        res.json(newPulpit);
-    } catch (error) {
-        res.status(400).send(error.message);
-    }
+        await eventData.postPulpit(data)
+            .then(newPulpit => {
+                console.log(newPulpit);
+                res.end('Pulpit inserted!' + '\n' + JSON.stringify(newPulpit));
+            })
+            .catch(error => {
+                Error_400(res, error);
+            })
 }
 
 const postSubject = async (req, res) => {
@@ -76,7 +80,7 @@ const postSubject = async (req, res) => {
         const newSubject = await eventData.postSubject(data);
         res.json(newSubject);
     } catch (error) {
-        res.status(400).send(error.message);
+        Error_400(res, error);
     }
 }
 
@@ -87,7 +91,7 @@ const postAuditoriumType = async (req, res) => {
         const newAuditoriumType = await eventData.postAuditoriumType(data);
         res.json(newAuditoriumType);
     } catch (error) {
-        res.status(400).send(error.message);
+        Error_400(res, error);
     }
 }
 
@@ -98,95 +102,101 @@ const postAuditorium = async (req, res) => {
         const newAuditorium = await eventData.postAuditorium(data);
         res.json(newAuditorium);
     } catch (error) {
-        res.status(400).send(error.message);
+        Error_400(res, error);
     }
 }
 
 const updateFaculty = async (req, res) => {
-    try {
-        const faculty = req.params.faculty;
-        console.log(faculty);
         const data = req.body;
         console.log(data);
-        const updatedFaculty = await eventData.updateFaculty(faculty, data);
-        res.json(updatedFaculty);
-    } catch (error) {
-        res.status(400).send(error.message);
-    }
+        await eventData.updateFaculty(data)
+            .then(updatedFaculty => {
+                console.log(updatedFaculty);
+                if (updatedFaculty.length == 0)
+                    throw new Error('No such faculty')
+                res.end('Faculty updated!' + '\n' + JSON.stringify(updatedFaculty));
+            })
+            .catch(error => {
+                Error_400(res, error);
+            })
 }
 
 const updatePulpit = async (req, res) => {
-    try {
-        const pulpit = req.params.pulpit;
-        console.log(pulpit);
         const data = req.body;
         console.log(data);
-        const updatedPulpit = await eventData.updatePulpit(pulpit, data);
-        res.json(updatedPulpit);
-    } catch (error) {
-        res.status(400).send(error.message);
-    }
+        await eventData.updatePulpit(data)
+        .then(updatedPulpit => {
+            console.log(updatedPulpit);
+            if (updatedPulpit.length == 0)
+                throw new Error('No such pulpit')
+            res.end('Pulpit updated!' + '\n' + JSON.stringify(updatedPulpit));
+        })
+            .catch(error => {
+                Error_400(res, error);
+            })
 }
 
 const updateSubject = async (req, res) => {
     try {
-        const subject = req.params.subject;
-        console.log(subject);
         const data = req.body;
         console.log(data);
-        const updatedSubject = await eventData.updateSubject(subject, data);
+        const updatedSubject = await eventData.updateSubject(data);
         res.json(updatedSubject);
     } catch (error) {
-        res.status(400).send(error.message);
+        Error_400(res, error);
     }
 }
 
 const updateAuditoriumType = async (req, res) => {
     try {
-        const auditoriumType = req.params.auditoriumtype;
-        console.log(auditoriumType);
         const data = req.body;
         console.log(data);
-        const updatedAuditoriumType = await eventData.updateAuditoriumType(auditoriumType, data);
+        const updatedAuditoriumType = await eventData.updateAuditoriumType(data);
         res.json(updatedAuditoriumType);
     } catch (error) {
-        res.status(400).send(error.message);
+        Error_400(res, error);
     }
 }
 
 const updateAuditorium = async (req, res) => {
     try {
-        const auditorium = req.params.auditorium;
-        console.log(auditorium);
         const data = req.body;
         console.log(data);
-        const updatedAuditorium = await eventData.updateAuditorium(auditorium, data);
+        const updatedAuditorium = await eventData.updateAuditorium(data);
         res.json(updatedAuditorium);
     } catch (error) {
-        res.status(400).send(error.message);
+        Error_400(res, error);
     }
 }
 
 const deleteFaculty = async (req, res) => {
-    try {
         const faculty = req.params.faculty;
         console.log(faculty);
-        const deletedFaculty = await eventData.deleteFaculty(faculty);
-        res.json(deletedFaculty);
-    } catch (error) {
-        res.status(400).send(error.message);
-    }
+        await eventData.deleteFaculty(faculty)
+            .then(deletedFaculty => {
+                console.log(deletedFaculty);
+                if (deletedFaculty.length == 0)
+                    throw new Error('No such faculty')
+                res.end('Faculty deleted!' + '\nFaculty: ' + JSON.stringify(deletedFaculty));
+                })
+            .catch(error => {
+               Error_400(res, error);
+            })
 }
 
 const deletePulpit = async (req, res) => {
-    try {
         const pulpit = req.params.pulpit;
         console.log(pulpit);
-        const deletedPulpit = await eventData.deletePulpit(pulpit);
-        res.json(deletedPulpit);
-    } catch (error) {
-        res.status(400).send(error.message);
-    }
+        await eventData.deletePulpit(pulpit)
+        .then(deletedPulpit => {
+            console.log(deletedPulpit);
+            if (deletedPulpit.length == 0)
+                throw new Error('No such pulpit')
+            res.end('Pulpit deleted!' + '\nPulpit: ' + JSON.stringify(deletedPulpit));
+        })
+        .catch(error => {
+            Error_400(res, error);
+        })
 }
 
 const deleteSubject = async (req, res) => {
@@ -196,7 +206,7 @@ const deleteSubject = async (req, res) => {
         const deletedSubject = await eventData.deleteSubject(subject);
         res.json(deletedSubject);
     } catch (error) {
-        res.status(400).send(error.message);
+        Error_400(res, error);
     }
 }
 
@@ -207,7 +217,7 @@ const deleteAuditoriumType = async (req, res) => {
         const deletedAuditoriumType = await eventData.deleteAuditoriumType(auditoriumType);
         res.json(deletedAuditoriumType);
     } catch (error) {
-        res.status(400).send(error.message);
+        Error_400(res, error);
     }
 }
 
@@ -218,8 +228,14 @@ const deleteAuditorium = async (req, res) => {
         const deletedAuditorium = await eventData.deleteAuditorium(auditorium);
         res.json(deletedAuditorium);
     } catch (error) {
-        res.status(400).send(error.message);
+        Error_400(res, error);
     }
+}
+
+const Error_400 = (res, error) => {
+    res.statusCode = 400;
+    res.statusMessage = 'Error';
+    res.end(error.message);
 }
 
 module.exports = {

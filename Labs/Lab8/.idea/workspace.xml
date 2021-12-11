@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="b082cd47-2893-4adb-8b03-726d0e3a4fd3" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../Lab14/.env" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Lab14/config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Lab14/controllers/eventController.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Lab14/events/events.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Lab14/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Lab14/routes/eventRoutes.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab14/controllers/eventController.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab14/controllers/eventController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab14/events/events.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab14/events/events.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab14/routes/eventRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab14/routes/eventRoutes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab14/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab14/static/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab15/eventController.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab15/eventController.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="220rZsgE2Myei92PHep49rsG4iT" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Lab16" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b082cd47-2893-4adb-8b03-726d0e3a4fd3" name="Changes" comment="" />
+      <created>1638985403595</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1638985403595</updated>
+      <workItem from="1638985404930" duration="64000" />
+      <workItem from="1638988436636" duration="84000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

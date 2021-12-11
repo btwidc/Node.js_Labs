@@ -59,7 +59,8 @@ const postFaculty = async (facultyData) => {
         const newFaculty = await pool.request()
             .input('FACULTY', sql.NVarChar(10), facultyData.FACULTY)
             .input('FACULTY_NAME', sql.NVarChar(50), facultyData.FACULTY_NAME)
-            .query('INSERT INTO FACULTY (FACULTY, FACULTY_NAME) VALUES (@FACULTY, @FACULTY_NAME);');
+            .query('INSERT INTO FACULTY (FACULTY, FACULTY_NAME) VALUES (@FACULTY, @FACULTY_NAME);' +
+                   'SELECT * FROM FACULTY WHERE FACULTY=@FACULTY;');
         return newFaculty.recordset;
     } catch (error) {
         return error.message;
@@ -73,7 +74,8 @@ const postPulpit = async (pulpitData) => {
             .input('PULPIT', sql.NVarChar(20), pulpitData.PULPIT)
             .input('PULPIT_NAME', sql.NVarChar(100), pulpitData.PULPIT_NAME)
             .input('FACULTY', sql.NVarChar(10), pulpitData.FACULTY)
-            .query('INSERT INTO PULPIT (PULPIT, PULPIT_NAME, FACULTY) VALUES (@PULPIT, @PULPIT_NAME, @FACULTY);');
+            .query('INSERT INTO PULPIT (PULPIT, PULPIT_NAME, FACULTY) VALUES (@PULPIT, @PULPIT_NAME, @FACULTY);' +
+                   'SELECT * FROM PULPIT WHERE PULPIT=@PULPIT;');
         return newPulpit.recordset;
     } catch (error) {
         return error.message;
@@ -122,67 +124,76 @@ const postAuditorium = async (auditoriumData) => {
     }
 }
 
-const updateFaculty = async (faculty, facultyData) => {
+const updateFaculty = async (facultyData) => {
     try {
         let pool = await sql.connect(config.sql);
         const updatedFaculty = await pool.request()
-            .input('FACULTY', sql.NVarChar(10), faculty)
-            .input('FACULTY_NAME', sql.NVarChar(50), facultyData.FACULTY_NAME)
-            .query('UPDATE FACULTY SET FACULTY_NAME=@FACULTY_NAME WHERE FACULTY=@FACULTY');
+            .input('FACULTY', sql.NVarChar(10), facultyData.FACULTY)
+            .input('NEW_FACULTY', sql.NVarChar(10), facultyData.NEW_FACULTY)
+            .input('NEW_FACULTY_NAME', sql.NVarChar(50), facultyData.NEW_FACULTY_NAME)
+            .query('UPDATE FACULTY SET FACULTY=@NEW_FACULTY, FACULTY_NAME=@NEW_FACULTY_NAME WHERE FACULTY=@FACULTY;' +
+                   'SELECT * FROM FACULTY WHERE FACULTY=@NEW_FACULTY');
         return updatedFaculty.recordset;
     } catch (error) {
         return error.message;
     }
 }
 
-const updatePulpit = async (pulpit, pulpitData) => {
+const updatePulpit = async (pulpitData) => {
     try {
         let pool = await sql.connect(config.sql);
         const updatedPulpit = await pool.request()
-            .input('PULPIT', sql.NVarChar(20), pulpit)
-            .input('FACULTY', sql.NVarChar(10), pulpitData.FACULTY)
-            .query('UPDATE PULPIT SET FACULTY=@FACULTY WHERE PULPIT=@PULPIT;');
+            .input('PULPIT', sql.NVarChar(20), pulpitData.PULPIT)
+            .input('NEW_PULPIT', sql.NVarChar(20), pulpitData.NEW_PULPIT)
+            .input('NEW_PULPIT_NAME', sql.NVarChar(20), pulpitData.NEW_PULPIT_NAME)
+            .input('NEW_FACULTY', sql.NVarChar(10), pulpitData.NEW_FACULTY)
+            .query('UPDATE PULPIT SET PULPIT=@NEW_PULPIT, PULPIT_NAME=@NEW_PULPIT_NAME, FACULTY=@NEW_FACULTY WHERE PULPIT=@PULPIT;' +
+                   'SELECT * FROM PULPIT WHERE PULPIT=@NEW_PULPIT');
         return updatedPulpit.recordset;
     } catch (error) {
         return error.message;
     }
 }
 
-const updateSubject = async (subject, subjectData) => {
+const updateSubject = async (subjectData) => {
     try {
         let pool = await sql.connect(config.sql);
         const updatedSubject = await pool.request()
-            .input('SUBJECT', sql.NVarChar(10), subject)
-            .input('PULPIT', sql.NVarChar(20), subjectData.PULPIT)
-            .query('UPDATE SUBJECT SET PULPIT=@PULPIT WHERE SUBJECT=@SUBJECT;');
+            .input('SUBJECT', sql.NVarChar(10), subjectData.SUBJECT)
+            .input('NEW_SUBJECT', sql.NVarChar(10), subjectData.NEW_SUBJECT)
+            .input('NEW_SUBJECT_NAME', sql.NVarChar(10), subjectData.NEW_SUBJECT_NAME)
+            .input('NEW_PULPIT', sql.NVarChar(20), subjectData.NEW_PULPIT)
+            .query('UPDATE SUBJECT SET SUBJECT=@NEW_SUBJECT, SUBJECT_NAME=@NEW_SUBJECT_NAME, PULPIT=@NEW_PULPIT WHERE SUBJECT=@SUBJECT;');
         return updatedSubject.recordset;
     } catch (error) {
         return error.message;
     }
 }
 
-const updateAuditoriumType = async (auditoriumType, auditoriumTypeData) => {
+const updateAuditoriumType = async (auditoriumTypeData) => {
     try {
         let pool = await sql.connect(config.sql);
         const updatedAuditoriumType = await pool.request()
-            .input('AUDITORIUM_TYPE', sql.NVarChar(10), auditoriumType)
-            .input('AUDITORIUM_TYPENAME', sql.NVarChar(30), auditoriumTypeData.AUDITORIUM_TYPENAME)
-            .query('UPDATE AUDITORIUMS_TYPE SET AUDITORIUM_TYPENAME=@AUDITORIUM_TYPENAME WHERE AUDITORIUM_TYPE=@AUDITORIUM_TYPE;');
+            .input('AUDITORIUM_TYPE', sql.NVarChar(10), auditoriumTypeData.AUDITORIUM_TYPE)
+            .input('NEW_AUDITORIUM_TYPE', sql.NVarChar(10), auditoriumTypeData.NEW_AUDITORIUM_TYPE)
+            .input('NEW_AUDITORIUM_TYPENAME', sql.NVarChar(30), auditoriumTypeData.NEW_AUDITORIUM_TYPENAME)
+            .query('UPDATE AUDITORIUMS_TYPE SET AUDITORIUM_TYPE=@NEW_AUDITORIUM_TYPE, AUDITORIUM_TYPENAME=@NEW_AUDITORIUM_TYPENAME WHERE AUDITORIUM_TYPE=@AUDITORIUM_TYPE;');
         return updatedAuditoriumType.recordset;
     } catch (error) {
         return error.message;
     }
 }
 
-const updateAuditorium = async (auditorium, auditoriumData) => {
+const updateAuditorium = async (auditoriumData) => {
     try {
         let pool = await sql.connect(config.sql);
         const updatedAuditorium = await pool.request()
-            .input('AUDITORIUM', sql.NVarChar(20), auditorium)
-            .input('AUDITORIUM_TYPE', sql.NVarChar(10), auditoriumData.AUDITORIUM_TYPE)
-            .input('AUDITORIUM_NAME', sql.NVarChar(50), auditoriumData.AUDITORIUM_NAME)
-            .input('AUDITORIUM_CAPACITY', sql.Int, auditoriumData.AUDITORIUM_CAPACITY)
-            .query('UPDATE AUDITORIUM SET AUDITORIUM_TYPE=@AUDITORIUM_TYPE, AUDITORIUM_NAME=@AUDITORIUM_NAME, AUDITORIUM_CAPACITY=@AUDITORIUM_CAPACITY WHERE AUDITORIUM=@AUDITORIUM;');
+            .input('AUDITORIUM', sql.NVarChar(20), auditoriumData.AUDITORIUM)
+            .input('NEW_AUDITORIUM', sql.NVarChar(20), auditoriumData.NEW_AUDITORIUM)
+            .input('NEW_AUDITORIUM_TYPE', sql.NVarChar(10), auditoriumData.NEW_AUDITORIUM_TYPE)
+            .input('NEW_AUDITORIUM_NAME', sql.NVarChar(50), auditoriumData.NEW_AUDITORIUM_NAME)
+            .input('NEW_AUDITORIUM_CAPACITY', sql.Int, auditoriumData.NEW_AUDITORIUM_CAPACITY)
+            .query('UPDATE AUDITORIUM SET AUDITORIUM=@NEW_AUDITORIUM, AUDITORIUM_TYPE=@NEW_AUDITORIUM_TYPE, AUDITORIUM_NAME=@NEW_AUDITORIUM_NAME, AUDITORIUM_CAPACITY=@NEW_AUDITORIUM_CAPACITY WHERE AUDITORIUM=@AUDITORIUM;');
         return updatedAuditorium.recordset;
     } catch (error) {
         return error.message;
@@ -191,10 +202,11 @@ const updateAuditorium = async (auditorium, auditoriumData) => {
 
 const deleteFaculty = async (faculty) => {
     try {
-        let pool = await sql.connect(config.sql);
+        let pool = await sql.connect(config.sql)
         const deletedFaculty = await pool.request()
             .input('FACULTY', sql.NVarChar(10), faculty)
-            .query('DELETE FROM FACULTY WHERE FACULTY=@FACULTY');
+            .query('SELECT * FROM FACULTY WHERE FACULTY=@FACULTY;' +
+                   'DELETE FROM FACULTY WHERE FACULTY=@FACULTY;');
         return deletedFaculty.recordset;
     } catch (error) {
         return error.message;
@@ -206,7 +218,8 @@ const deletePulpit = async (pulpit) => {
         let pool = await sql.connect(config.sql);
         const deletedPulpit = await pool.request()
             .input('PULPIT', sql.NVarChar(20), pulpit)
-            .query('DELETE FROM PULPIT WHERE PULPIT=@PULPIT');
+            .query('SELECT * FROM PULPIT WHERE PULPIT=@PULPIT;' +
+                'DELETE FROM PULPIT WHERE PULPIT=@PULPIT');
         return deletedPulpit.recordset;
     } catch (error) {
         return error.message;

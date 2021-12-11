@@ -53,6 +53,79 @@ select * from PULPIT;
 
 ----------------------------------------------------------------------------------------
 
+CREATE TABLE TEACHER
+ ( 
+  TEACHER       nvarchar(20) NOT  NULL,
+  TEACHER_NAME  nvarchar(50), 
+  PULPIT        nvarchar(20) NOT NULL, 
+  CONSTRAINT PK_TEACHER  PRIMARY KEY(TEACHER), 
+  CONSTRAINT FK_TEACHER_PULPIT FOREIGN   KEY(PULPIT)   REFERENCES PULPIT(PULPIT)
+ ) ;
+ 
+ 
+delete  TEACHER;
+insert into  TEACHER    (TEACHER,   TEACHER_NAME, PULPIT )
+                       values  ('СМЛВ',    'Смелов Владимир Владиславович',  'ИСиТ');
+insert into  TEACHER    (TEACHER,  TEACHER_NAME, PULPIT )
+                       values  ('АКНВЧ',    'Акунович Станислав Иванович',  'ИСиТ');
+insert into  TEACHER    (TEACHER,  TEACHER_NAME, PULPIT )
+                       values  ('КЛСНВ',    'Колесников Леонид Валерьевич',  'ИСиТ');
+insert into  TEACHER    (TEACHER,  TEACHER_NAME, PULPIT )
+                       values  ('ГРМН',    'Герман Олег Витольдович',  'ИСиТ');
+insert into  TEACHER    (TEACHER,  TEACHER_NAME, PULPIT )
+                       values  ('ЛЩНК',    'Лащенко Анатолий Пвалович',  'ИСиТ');
+insert into  TEACHER    (TEACHER,  TEACHER_NAME, PULPIT )
+                       values  ('БРКВЧ',    'Бракович Андрей Игорьевич',  'ИСиТ');
+insert into  TEACHER    (TEACHER,  TEACHER_NAME, PULPIT )
+                       values  ('ДДК',     'Дедко Александр Аркадьевич',  'ИСиТ');
+insert into  TEACHER    (TEACHER,  TEACHER_NAME, PULPIT )
+                       values  ('КБЛ',     'Кабайло Александр Серафимович',  'ИСиТ');
+insert into  TEACHER    (TEACHER,  TEACHER_NAME, PULPIT )
+                       values  ('УРБ',     'Урбанович Павел Павлович',  'ИСиТ');
+insert into  TEACHER    (TEACHER,  TEACHER_NAME, PULPIT )
+                       values  ('РМНК',     'Романенко Дмитрий Михайлович',  'ИСиТ');
+insert into  TEACHER    (TEACHER,  TEACHER_NAME, PULPIT )
+                       values  ('ПСТВЛВ',  'Пустовалова Наталия Николаевна', 'ИСиТ' );
+insert into  TEACHER    (TEACHER,  TEACHER_NAME, PULPIT )
+                       values  ('?',     'Неизвестный',  'ИСиТ');
+insert into  TEACHER    (TEACHER,  TEACHER_NAME, PULPIT )
+                      values  ('ГРН',     'Гурин Николай Иванович',  'ИСиТ');
+insert into  TEACHER    (TEACHER,  TEACHER_NAME, PULPIT )
+                       values  ('ЖЛК',     'Жиляк Надежда Александровна',  'ИСиТ');
+insert into  TEACHER    (TEACHER,  TEACHER_NAME, PULPIT )
+                       values  ('БРТШВЧ',   'Барташевич Святослав Александрович',  'ПОиСОИ');
+insert into  TEACHER    (TEACHER,  TEACHER_NAME, PULPIT )
+                       values  ('ЮДНКВ',   'Юденков Виктор Степанович',  'ПОиСОИ');
+insert into  TEACHER    (TEACHER,  TEACHER_NAME, PULPIT )
+                       values  ('БРНВСК',   'Барановский Станислав Иванович',  'ЭТиМ');
+insert into  TEACHER    (TEACHER,  TEACHER_NAME, PULPIT )
+                       values  ('НВРВ',   'Неверов Александр Васильевич',  'МиЭП');
+insert into  TEACHER    (TEACHER,  TEACHER_NAME, PULPIT )
+                       values  ('РВКЧ',   'Ровкач Андрей Иванович',  'ОВ');
+insert into  TEACHER    (TEACHER,  TEACHER_NAME, PULPIT )
+                       values  ('ДМДК', 'Демидко Марина Николаевна',  'ЛПиСПС');
+insert into  TEACHER    (TEACHER,  TEACHER_NAME, PULPIT )
+                       values  ('МШКВСК',   'Машковский Владимир Петрович',  'ЛУ');
+insert into  TEACHER    (TEACHER,  TEACHER_NAME, PULPIT )
+                       values  ('ЛБХ',   'Лабоха Константин Валентинович',  'ЛВ');
+insert into  TEACHER    (TEACHER,  TEACHER_NAME, PULPIT )
+                       values  ('ЗВГЦВ',   'Звягинцев Вячеслав Борисович',  'ЛЗиДВ'); 
+insert into  TEACHER    (TEACHER,  TEACHER_NAME, PULPIT )
+                       values  ('БЗБРДВ',   'Безбородов Владимир Степанович',  'ОХ'); 
+insert into  TEACHER    (TEACHER,  TEACHER_NAME, PULPIT )
+                       values  ('ПРКПЧК',   'Прокопчук Николай Романович',  'ТНХСиППМ'); 
+insert into  TEACHER    (TEACHER,  TEACHER_NAME, PULPIT )
+                       values  ('НСКВЦ',   'Насковец Михаил Трофимович',  'ТЛ'); 
+insert into  TEACHER    (TEACHER,  TEACHER_NAME, PULPIT )
+                       values  ('МХВ',   'Мохов Сергей Петрович',  'ЛМиЛЗ'); 
+insert into  TEACHER    (TEACHER,  TEACHER_NAME, PULPIT )
+                       values  ('ЕЩНК',   'Ещенко Людмила Семеновна',  'ТНВиОХТ'); 
+insert into  TEACHER    (TEACHER,  TEACHER_NAME, PULPIT )
+                       values  ('ЖРСК',   'Жарский Иван Михайлович',  'ХТЭПиМЭЕ'); 
+
+select * from TEACHER;
+-----------------------------------------------------------------------------------------------					   
+
 create table SUBJECT
 (    
 	SUBJECT  nvarchar(10) constraint SUBJECT_PK  primary key, 

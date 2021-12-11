@@ -39,11 +39,11 @@ router.post('/subjects', postSubject);
 router.post('/auditoriumstypes', postAuditoriumType);
 router.post('/auditoriums', postAuditorium);
 
-router.put('/faculties/:faculty', updateFaculty);
-router.put('/pulpits/:pulpit', updatePulpit);
-router.put('/subjects/:subject', updateSubject);
-router.put('/auditoriumstypes/:auditoriumtype', updateAuditoriumType);
-router.put('/auditoriums/:auditorium', updateAuditorium);
+router.put('/faculties', updateFaculty);
+router.put('/pulpits', updatePulpit);
+router.put('/subjects', updateSubject);
+router.put('/auditoriumstypes', updateAuditoriumType);
+router.put('/auditoriums', updateAuditorium);
 
 router.delete('/faculties/:faculty', deleteFaculty);
 router.delete('/pulpits/:pulpit', deletePulpit);

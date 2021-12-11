@@ -69,7 +69,7 @@ function DB(cb) {
 			.input('s', mssql.NVarChar, args.SUBJECT)
 			.query('delete from SUBJECT where SUBJECT = @s')
 			.then((r) => {
-				return (r.rowsAffected[0] === 0) ? null : args;
+				return r.rowsAffected[0] !== 0;
 			});
 	};
 	this.delTeacher = (args, context) => {
