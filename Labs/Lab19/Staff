@@ -1,0 +1,31 @@
+INSERT INTO "Position" ("positionName", "positionSalary", "positionHoursPerWeek") VALUES ('React', 300, 32);
+INSERT INTO "Position" ("positionName", "positionSalary", "positionHoursPerWeek") VALUES ('Node.js', 420, 40);
+INSERT INTO "Position" ("positionName", "positionSalary", "positionHoursPerWeek") VALUES ('.NET', 500, 30);
+INSERT INTO "Position" ("positionName", "positionSalary", "positionHoursPerWeek") VALUES ('Python', 370, 24);
+INSERT INTO "Position" ("positionName", "positionSalary", "positionHoursPerWeek") VALUES ('Java', 250, 16);
+INSERT INTO "Position" ("positionName", "positionSalary", "positionHoursPerWeek") VALUES ('Ruby', 640, 38);
+INSERT INTO "Position" ("positionName", "positionSalary", "positionHoursPerWeek") VALUES ('C++', 120, 10);
+SELECT * FROM "Position";
+
+INSERT INTO "Recruiter" ("recruiterName", "recruiterSurname", "recruiterEmail", "recruiterPhone", "recruiterExperience", "recruiterPositionId") values ('Kirill', 'Kravchenko', 'krauchankakiryl@gmail.com', '+375445652197', 6, 2);
+INSERT INTO "Recruiter" ("recruiterName", "recruiterSurname", "recruiterEmail", "recruiterPhone", "recruiterExperience", "recruiterPositionId") values ('Nikita', 'Kravchenko', 'krauchankamikita@gmail.com', '+375445652198', 8, 3);
+INSERT INTO "Recruiter" ("recruiterName", "recruiterSurname", "recruiterEmail", "recruiterPhone", "recruiterExperience", "recruiterPositionId") values ('Ivan', 'Grishin', 'grishinivan@gmail.com', '+375294352178', 4, 5);
+SELECT * FROM "Recruiter";
+
+INSERT INTO "Employer" ("employerName", "employerSurname", "employerEmail", "employerPhone", "employerExperience", "employerStreetAddress", "employerCity", "employerCountry") values ('Oleg', 'Kaportsev', 'kaportsevoleg@gmail.com', '+375295683471', 2, 'Y. Mavra 18', 'Minsk', 'Belarus');
+INSERT INTO "Employer" ("employerName", "employerSurname", "employerEmail", "employerPhone", "employerExperience", "employerStreetAddress", "employerCity", "employerCountry") values ('Lera', 'Fedoruk', 'fedoruklera@gmail.com', '+375445768766', 1, 'A. Pushkina 5/1', 'Minsk', 'Belarus');
+INSERT INTO "Employer" ("employerName", "employerSurname", "employerEmail", "employerPhone", "employerExperience", "employerStreetAddress", "employerCity", "employerCountry") values ('Dima', 'Kaminskiy', 'kaminskiydima@gmail.com', '+375295788996', 3, 'E. Pritizkogo 2', 'Minsk', 'Belarus');
+INSERT INTO "Employer" ("employerName", "employerSurname", "employerEmail", "employerPhone", "employerExperience", "employerStreetAddress", "employerCity", "employerCountry") values ('Kazimir', 'Kantor', 'kantorkazimir@gmail.com', '+375445758699', 1, 'G. Stolyara 6', 'Grodno', 'Belarus');
+INSERT INTO "Employer" ("employerName", "employerSurname", "employerEmail", "employerPhone", "employerExperience", "employerStreetAddress", "employerCity", "employerCountry") values ('Efim', 'Kopil', 'kopilefim@gmail.com', '+375445869833', 4, 'D. Stalina 244', 'Vitebsk', 'Belarus');
+INSERT INTO "Employer" ("employerName", "employerSurname", "employerEmail", "employerPhone", "employerExperience", "employerStreetAddress", "employerCity", "employerCountry") values ('Jan', 'Christof', 'christofjan@gmail.com', '+375445789092', 6, 'U. Lenina 5/4B', 'Paris', 'France');
+INSERT INTO "Employer" ("employerName", "employerSurname", "employerEmail", "employerPhone", "employerExperience", "employerStreetAddress", "employerCity", "employerCountry") values ('Yan', 'Krainov', 'krainovyan@gmail.com', '+375298756473', 2, 'U. Pobedi 2', 'Kiev', 'Ukraine');
+SELECT * FROM "Employer";
+
+INSERT INTO "Offer" ("positionID", "recruiterID", "employerID") values (1, 1, 1);
+INSERT INTO "Offer" ("positionID", "recruiterID", "employerID") values (2, 2, 2);
+INSERT INTO "Offer" ("positionID", "recruiterID", "employerID") values (3, 3, 3);
+INSERT INTO "Offer" ("positionID", "recruiterID", "employerID") values (4, 3, 4);
+INSERT INTO "Offer" ("positionID", "recruiterID", "employerID") values (5, 1, 5);
+INSERT INTO "Offer" ("positionID", "recruiterID", "employerID") values (2, 1, 6);
+INSERT INTO "Offer" ("positionID", "recruiterID", "employerID") values (3, 2, 7);
+SELECT * FROM "Offer";

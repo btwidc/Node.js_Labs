@@ -26,12 +26,12 @@ type SUBJECT {
   PULPIT: String!
 }
 
-type A {
+type FacultyTeachers {
   FACULTY: String!
   TEACHERS: [TEACHER]
 }
 
-type B {
+type PulpitSubjects {
   PULPIT: String!
   PULPIT_NAME: String!
   FACULTY: String!
@@ -43,8 +43,8 @@ type Query {
   getPulpits(PULPIT: String): [PULPIT]
   getTeachers(TEACHER: String): [TEACHER]
   getSubjects(SUBJECT: String): [SUBJECT]
-  getTeachersByFaculty(FACULTY: String!): [A]
-  getSubjectsByFaculties(FACULTY: String!): [B]
+  getTeachersByFaculty(FACULTY: String!): [FacultyTeachers]
+  getSubjectsByFaculties(FACULTY: String!): [PulpitSubjects]
 }
 
 type Mutation {

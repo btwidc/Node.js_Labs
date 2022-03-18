@@ -1,0 +1,9 @@
+<div class="add-form">
+    <input type="text" id="name" class="form-input" placeholder="Name" pattern="^[a-zA-Z ,.'-]+$">
+    <input type="text" id="number" class="form-input" placeholder="Telephone" pattern="^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$">
+</div>
+<div class="form-submit">
+    <button class="submit-button" onclick="Add()">Add</button>
+    {{#reject}}
+    {{/reject}}
+</div>

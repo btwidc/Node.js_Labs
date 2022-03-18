@@ -1,0 +1,111 @@
+.main-title {
+    text-align: center;
+    font-weight: bold;
+    font-family: "Book Antiqua";
+    font-size: 40px;
+    color: lightslategrey;
+    margin: 5px;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 10px solid darkgrey;
+    border-radius: 10px;
+    width: 80%;
+    margin: auto;
+    height: 600px;
+    background: lightgray;
+}
+
+.notes-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    padding: 10px;
+    border: 5px solid darkgrey;
+    border-radius: 10px;
+    height: 400px;
+    width: 90%;
+    overflow: auto;
+    background: lightslategrey;
+}
+
+.block-button {
+    width: 90%;
+    margin: 5px;
+    height: 60px;
+    background-color:lightgray;
+    border: 3px solid darkgrey;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 18px;
+    color: lightslategrey;
+}
+
+.partial-content {
+    width: 50%;
+    display: flex;
+    margin-top: 20px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.add-btn{
+    width: 90%;
+    background-color: lightslategrey;
+    border: 3px solid darkgrey;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 22px;
+    color: darkgrey;
+    height: 50px;
+}
+
+.add-form {
+    width: 90%;
+    display: flex;
+    flex-direction:row;
+    margin: 10px;
+}
+
+.form-input {
+    width: 50%;
+    margin-right: 20px;
+    padding-left: 10px;
+    height: 40px;
+    border: 3px solid darkgrey;
+    color: darkslategrey;
+    background: whitesmoke;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.form-submit {
+    width: 90%;
+    display: flex;
+    flex-direction:row;
+    margin: 10px;
+    justify-content: space-around;
+}
+
+.submit-button {
+    width: 30%;
+    height: 50px;
+    border: 3px solid darkgrey;
+    color: darkgrey;
+    font-size: 20px;
+    font-weight: 700;
+    border-radius: 5px;
+    background-color: lightslategrey;
+}
+
+input:invalid {
+    border: 3px solid red;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+}

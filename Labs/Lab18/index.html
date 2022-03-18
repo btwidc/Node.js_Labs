@@ -1,0 +1,118 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 18</title>
+    <style>
+        button {
+            margin-bottom: 10px;
+        }
+    </style>
+    <script>
+        function getPulpits() {
+            let print = document.getElementById('get_data');
+
+            fetch('/api/pulpits', {
+                method: 'GET'
+            })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    }
+                })
+                .then(data => {
+                    print.innerHTML = JSON.stringify(data);
+                })
+                .catch(error => {
+                    print.innerHTML = error;
+                });
+        }
+
+        function postPulpits() {
+            let print = document.getElementById('post_data');
+
+            fetch('/api/pulpits', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    pulpit: "НОДА",
+                    pulpit_name: "Люблю Ноду :)",
+                    faculty: "ПСКП",
+                })
+            })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    }
+                })
+                .then(data => {
+                    print.innerHTML = JSON.stringify(data);
+                })
+                .catch(error => {
+                    print.innerHTML = error;
+                });
+        }
+
+        function putPulpits() {
+            let print = document.getElementById('put_data');
+
+            fetch('/api/pulpits', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    pulpit: "НОДА",
+                    pulpit_name: "Не люблю Ноду :(",
+                    faculty: "ПСКП"
+                })
+            })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    }
+                })
+                .then(data => {
+                    print.innerHTML = `Successfully updated: ${JSON.stringify(data)}`;
+                })
+                .catch(error => {
+                    print.innerHTML = error;
+                });
+        }
+
+        function deletePulpits() {
+            let print = document.getElementById('delete_data');
+
+            fetch('/api/pulpits/НОДА', {
+                method: 'DELETE'
+            })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    }
+                })
+                .then(data => {
+                    print.innerHTML = `Successfully deleted: ${JSON.stringify(data)}`;
+                })
+                .catch(error => {
+                    print.innerHTML = error;
+                });
+        }
+    </script>
+</head>
+<body>
+<div>
+    <button onclick="getPulpits()">Get Pulpits</button>
+    <button onclick="postPulpits()">Post Pulpits</button>
+    <button onclick="putPulpits()">Put Pulpits</button>
+    <button onclick="deletePulpits()">Delete Pulpits</button>
+</div>
+    <div><h3>GET: </h3><div id="get_data"></div></div>
+    <div><h3>POST: </h3><div id="post_data"></div></div>
+    <div><h3>PUT: </h3><div id="put_data"></div></div>
+    <div><h3>DELETE: </h3><div id="delete_data"></div></div>
+</body>
+</html>
